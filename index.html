@@ -17,15 +17,23 @@
         @keyframes move {
             0%{
                 transform: scale(0px);
-                background-image: url("pic/nikolas-noonan-fQM8cbGY6iQ-unsplash.jpg");
+                background-image: url("pic/kk4.jpg");
             }
-            45%{
+            25%{
                 transform: scale(0px);
                 background-image: url("pic/valentin-muller-bWtd1ZyEy6w-unsplash.jpg");
             }
-            100%{
+            50%{
+                transform: scale(0px);
+                background-image: url("pic/ss2.jpg");
+            }
+            75%{
                 transform: scale(0px);
                 background-image: url("pic/wolfgang-hasselmann-bR_-gllg7Bs-unsplash.jpg");
+            }
+            100%{
+                transform: scale(0px);
+                background-image: url("pic/kk1.jpg");
             }
         }
     </style>
@@ -38,10 +46,8 @@
             <div class="container rounded col-12">
                 <fieldset class="container">
                     <center>
-                        <marquee class="text-success"><h1>WELCOME TO ANTHONY WEATHER FORCASTE</h1></marquee>
-                    </center>
-                    <input type="email" class="form-control my-4 px-4" placeholder="Your city" id="city">
-                    <center>
+                        <marquee style="color: #AE1A5F;"><h1>WELCOME TO ANTHONY WEATHER FORCASTE</h1></marquee>
+                        <input type="email" class="form-control my-4 px-4" placeholder="Your city" id="city">
                         <button onclick="generat()" type="submit" class="btn btn-dark col-12 col-md-5 mb-2">CHECK-WEATHER</button>
                     </center>
                 </fieldset>
@@ -51,27 +57,27 @@
             <div class="row">
                 <div class="col-12 col-md-2">
                     <h2 style="color: #AE1A5F;">Temparature <sup>0</sup><sub>C</sub></h2>
-                    <h2 id="weather" class="text-success"></h2>
+                    <h2 id="weather" class="text-light"></h2>
                 </div>
                 <div class="col-12 col-md-2">
                     <h2 style="color: #AE1A5F;">Country</h2>
-                    <h2 id="country" class="text-success"></h2>
+                    <h2 id="country" class="text-light"></h2>
                 </div>
                 <div class="col-12 col-md-2">
                     <h2 style="color: #AE1A5F;">State</h2>
-                    <h2 id="named" class="text-success"></h2>
+                    <h2 id="named" class="text-light"></h2>
                 </div>
                 <div class="col-12 col-md-2">
                     <h2 style="color: #AE1A5F;">weather (description)</h2>
-                    <h2 id="dep" class="text-success"></h2>
+                    <h2 id="dep" class="text-light"></h2>
                 </div>
                 <div class="col-12 col-md-2">
                     <h2 style="color: #AE1A5F;">humidity</h2>
-                    <h2 id="hum" class="text-success"></h2>
+                    <h2 id="hum" class="text-light"></h2>
                 </div>
                 <div class="col-12 col-md-2">
                     <h2 style="color: #AE1A5F;">wind-speed</h2>
-                    <h2 id="win" class="text-success"></h2>
+                    <h2 id="win" class="text-light"></h2>
                 </div>    
             </div>
         </div>
