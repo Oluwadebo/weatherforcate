@@ -1,0 +1,94 @@
+body{
+	margin:0px;
+	padding: 0px;
+}
+.header{
+	background-color: #80808017;
+	/*padding:0px;*/
+	position: absolute;
+	width: 100%;
+}
+.header li{
+	list-style: none;
+	display: inline;
+	margin-right: 20px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #1f1d1dad;
+	font-family: sans-serif;
+	padding: 10px 20px;
+
+}
+.header li:hover{
+	cursor:pointer;
+	border: 1px solid red;
+	background-color: blue;
+	color: white;
+}
+.header ul{
+	margin:0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 30px;
+	float: right;
+	/**/
+}
+.slider{
+	position: absolute;
+	top: 37px;
+	width: 100%;
+	background-image: url('../pic/underwater.jpg');
+	height: 30em;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+
+}
+.slider h1{
+	background: linear-gradient(to top right,red,blue,yellow);
+	padding:10px 40px;
+}
+.body{
+	border:1px solid red;
+	position: absolute;
+	width: 100%;
+	margin-top: 33em;
+}
+.body .bhead{
+	border:2px solid blue;
+	display: flex;
+	justify-content: space-between;
+}
+.title{
+	border:1px solid yellow;
+	margin-right: 10px;
+}
+.bblog .title{
+	margin-right: 0 !important;
+}
+.name{
+	border:3px solid green;
+}
+.sub{
+	display: flex;
+	justify-content: space-between;
+}
+@media(max-width: 361px){
+	.body .bhead{
+		display: block;
+	}
+}
+.bgs{
+	display: flex;
+
+}
+.blog1{
+	margin-left: 10px;
+}
+.bgs p{
+	margin-left: 10px;
+}

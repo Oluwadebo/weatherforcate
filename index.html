@@ -1,0 +1,115 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/all.min.css">
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <title>weather forecasting</title>
+    <style>
+        body{
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: move 60s linear infinite;
+        }
+        @keyframes move {
+            0%{
+                transform: scale(0px);
+                background-image: url("pic/nikolas-noonan-fQM8cbGY6iQ-unsplash.jpg");
+            }
+            45%{
+                transform: scale(0px);
+                background-image: url("pic/valentin-muller-bWtd1ZyEy6w-unsplash.jpg");
+            }
+            100%{
+                transform: scale(0px);
+                background-image: url("pic/wolfgang-hasselmann-bR_-gllg7Bs-unsplash.jpg");
+            }
+        }
+    </style>
+</head>
+<body onload="getLocation()">
+    
+    <div>
+
+        <div class="container py-3 rounded my-5">
+            <div class="container rounded col-12">
+                <fieldset class="container">
+                    <center>
+                        <marquee class="text-success"><h1>WELCOME TO ANTHONY WEATHER FORCASTE</h1></marquee>
+                    </center>
+                    <input type="email" class="form-control my-4 px-4" placeholder="Your city" id="city">
+                    <center>
+                        <button onclick="generat()" type="submit" class="btn btn-dark col-12 col-md-5 mb-2">CHECK-WEATHER</button>
+                    </center>
+                </fieldset>
+            </div>
+        </div>
+        <div class="container rounded my-5">
+            <div class="row">
+                <div class="col-12 col-md-2">
+                    <h2 style="color: #AE1A5F;">Temparature <sup>0</sup><sub>C</sub></h2>
+                    <h2 id="weather" class="text-success"></h2>
+                </div>
+                <div class="col-12 col-md-2">
+                    <h2 style="color: #AE1A5F;">Country</h2>
+                    <h2 id="country" class="text-success"></h2>
+                </div>
+                <div class="col-12 col-md-2">
+                    <h2 style="color: #AE1A5F;">State</h2>
+                    <h2 id="named" class="text-success"></h2>
+                </div>
+                <div class="col-12 col-md-2">
+                    <h2 style="color: #AE1A5F;">weather (description)</h2>
+                    <h2 id="dep" class="text-success"></h2>
+                </div>
+                <div class="col-12 col-md-2">
+                    <h2 style="color: #AE1A5F;">humidity</h2>
+                    <h2 id="hum" class="text-success"></h2>
+                </div>
+                <div class="col-12 col-md-2">
+                    <h2 style="color: #AE1A5F;">wind-speed</h2>
+                    <h2 id="win" class="text-success"></h2>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+    <script text="text/javascript">
+        async function getLocation(){
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=ogbomoso&appid=b1152ce226ab6767490d118190fb1c2f`;
+            let response = await fetch(url);
+            var convertedResponse = await response.json();
+            console.log(convertedResponse);
+            weather.innerHTML = `${Math.round(convertedResponse.main.temp - 273)}`
+            country.innerHTML = convertedResponse.sys.country;
+            named.innerHTML = convertedResponse.name;
+            dep.innerHTML = convertedResponse.weather[0].description;
+            hum.innerHTML = convertedResponse.main.humidity;
+            win.innerHTML = convertedResponse.wind.speed;
+            win.innerHTML = convertedResponse.wind.speed;
+        }
+        async function generat(){
+            let userLocation = city.value
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${userLocation}&appid=b1152ce226ab6767490d118190fb1c2f`
+            let response = await fetch(url);
+            var convertedResponse = await response.json();
+            console.log(convertedResponse);
+            weather.innerHTML = `${Math.round(convertedResponse.main.temp - 273)}`
+            country.innerHTML = convertedResponse.sys.country;
+            named.innerHTML = convertedResponse.name;
+            dep.innerHTML = convertedResponse.weather[0].description;
+            hum.innerHTML = convertedResponse.main.humidity;
+            win.innerHTML = convertedResponse.wind.speed;
+
+            console.log(convertedResponse.weather[0].description);
+        }
+
+    </script>
+    <script src="bootstrap-4.3.1-dist/js/jquery-slim.min.js"></script>
+    <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    
+</body>
+</html> -->
