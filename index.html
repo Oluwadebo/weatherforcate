@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,44 +9,40 @@
     <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
     <title>weather forecasting</title>
     <style>
-        body{
-            background-image: url("pic/valentin-muller-bWtd1ZyEy6w-unsplash.jpg");
+        .body {
+            background-image: url("pic/wolfgang-hasselmann-bR_-gllg7Bs-unsplash.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             animation: move 60s linear infinite;
         }
         @keyframes move {
-            0%{
+            0% {
                 transform: scale(0px);
                 background-image: url("pic/kk4.jpg");
             }
-            /* 10%{
-                transform: scale(0px);
-                background-image: url("pic/valentin-muller-bWtd1ZyEy6w-unsplash.jpg");
-            } */
-            15%{
-                transform: scale(0px);
-                background-image: url("pic/wolfgang-hasselmann-bR_-gllg7Bs-unsplash.jpg");
-            }
-            20%{
+            100% {
                 transform: scale(0px);
                 background-image: url("pic/kk1.jpg");
             }
         }
     </style>
 </head>
-<body onload="getLocation()">
-    
-    <div>
+
+<body onload="getLocation()" class="body">
+
+    <div >
 
         <div class="container py-3 rounded my-5">
             <div class="container rounded col-12">
                 <fieldset class="container">
                     <center>
-                        <marquee style="color: #AE1A5F;"><h1>WELCOME TO ANTHONY WEATHER FORCASTE</h1></marquee>
-                        <input type="email" class="form-control my-4 px-4" placeholder="Your city" id="city">
-                        <button onclick="generat()" type="submit" class="btn btn-dark col-12 col-md-5 mb-2">CHECK-WEATHER</button>
+                        <marquee style="color: #AE1A5F;">
+                            <h1>WELCOME TO ANTHONY WEATHER FORCASTE</h1>
+                        </marquee>
+                        <input type="email" class="col-12 col-md-5 my-5 px-4" placeholder="Your city" id="city">
+                        <button onclick="generat()" type="submit"
+                            class="btn btn-dark col-12 col-md-5 mb-2">CHECK-WEATHER</button>
                     </center>
                 </fieldset>
             </div>
@@ -75,13 +72,14 @@
                 <div class="col-12 col-md-2">
                     <h2 style="color: #AE1A5F;">wind-speed</h2>
                     <h2 id="win" class="text-light"></h2>
-                </div>    
+                </div>
             </div>
         </div>
+
     </div>
 
     <script text="text/javascript">
-        async function getLocation(){
+        async function getLocation() {
             const url = `https://api.openweathermap.org/data/2.5/weather?q=ogbomoso&appid=b1152ce226ab6767490d118190fb1c2f`;
             let response = await fetch(url);
             var convertedResponse = await response.json();
@@ -94,7 +92,7 @@
             win.innerHTML = convertedResponse.wind.speed;
             win.innerHTML = convertedResponse.wind.speed;
         }
-        async function generat(){
+        async function generat() {
             let userLocation = city.value
             const url = `https://api.openweathermap.org/data/2.5/weather?q=${userLocation}&appid=b1152ce226ab6767490d118190fb1c2f`
             let response = await fetch(url);
@@ -113,6 +111,7 @@
     </script>
     <script src="bootstrap-4.3.1-dist/js/jquery-slim.min.js"></script>
     <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-    
+
 </body>
+
 </html>
