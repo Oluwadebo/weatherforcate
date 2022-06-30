@@ -38,7 +38,7 @@
                 <fieldset class="container">
                     <center>
                         <marquee style="color: #AE1A5F;">
-                            <h1>WELCOME TO ANTHONY WEATHER FORCASTE</h1>
+                            <h1>WELCOME TO ANTHONY WEATHER FORECASTE</h1>
                         </marquee>
                         <input type="email" class="col-12 col-md-5 my-5 px-4" placeholder="Your city" id="city">
                         <button onclick="generat()" type="submit"
@@ -50,7 +50,7 @@
         <div class="container rounded my-5">
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <h2 style="color: #AE1A5F;">Temparature <sup>0</sup><sub>C</sub></h2>
+                    <h2 style="color: #AE1A5F;">Temparature</h2>
                     <h2 id="weather" class="text-light"></h2>
                 </div>
                 <div class="col-12 col-md-2">
@@ -58,7 +58,7 @@
                     <h2 id="country" class="text-light"></h2>
                 </div>
                 <div class="col-12 col-md-2">
-                    <h2 style="color: #AE1A5F;">State</h2>
+                    <h2 style="color: #AE1A5F;">City</h2>
                     <h2 id="named" class="text-light"></h2>
                 </div>
                 <div class="col-12 col-md-2">
@@ -84,7 +84,7 @@
             let response = await fetch(url);
             var convertedResponse = await response.json();
             console.log(convertedResponse);
-            weather.innerHTML = `${Math.round(convertedResponse.main.temp - 273)}`
+            weather.innerHTML = `${Math.round(convertedResponse.main.temp - 273)} <sup>0</sup><sub>C</sub>`
             country.innerHTML = convertedResponse.sys.country;
             named.innerHTML = convertedResponse.name;
             dep.innerHTML = convertedResponse.weather[0].description;
@@ -98,7 +98,7 @@
             let response = await fetch(url);
             var convertedResponse = await response.json();
             console.log(convertedResponse);
-            weather.innerHTML = `${Math.round(convertedResponse.main.temp - 273)}`
+            weather.innerHTML = `${Math.round(convertedResponse.main.temp - 273)} <sup>0</sup><sub>C</sub>`
             country.innerHTML = convertedResponse.sys.country;
             named.innerHTML = convertedResponse.name;
             dep.innerHTML = convertedResponse.weather[0].description;
