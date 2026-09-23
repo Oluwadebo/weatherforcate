@@ -12,7 +12,6 @@ const recentChips = document.getElementById("recentChips");
 // Fine for a personal/local project — if this ever goes live for
 // real traffic, route the request through a small backend/serverless
 // function instead, so the key never reaches the browser.
-const API_KEY = "b1152ce226ab6767490d118190fb1c2f";
 const RECENT_KEY = "weatherRecentCities";
 
 function setState(state, message) {
