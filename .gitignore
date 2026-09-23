@@ -2,4 +2,6 @@ bootstrap-4.3.1-dist
 /bootstrap-4.3.1-dist
 ./bootstrap-4.3.1-dist
 
+.env
+.vercel
 config.js

@@ -8,10 +8,10 @@ const forecastStrip = document.getElementById("forecastStrip");
 const recentWrap = document.getElementById("recentWrap");
 const recentChips = document.getElementById("recentChips");
 
-// NOTE: this key is visible to anyone who views this page's source.
-// Fine for a personal/local project — if this ever goes live for
-// real traffic, route the request through a small backend/serverless
-// function instead, so the key never reaches the browser.
+// Requests go through /api/weather and /api/forecast (Vercel serverless
+// functions, see the /api folder) instead of calling OpenWeatherMap
+// directly. The real API key lives only in Vercel's environment variables
+// (OPENWEATHER_API_KEY) and never reaches the browser.
 const RECENT_KEY = "weatherRecentCities";
 
 function setState(state, message) {
@@ -89,7 +89,7 @@ async function processWeatherResponse(response, label) {
 }
 
 async function fetchWeatherByCity(cityName) {
-  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&appid=${API_KEY}`;
+  const weatherUrl = `/api/weather?q=${encodeURIComponent(cityName)}`;
   const response = await fetch(weatherUrl);
   const data = await processWeatherResponse(response, cityName);
   if (!data) return;
@@ -99,7 +99,7 @@ async function fetchWeatherByCity(cityName) {
   addRecentCity(data.name);
 
   try {
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(cityName)}&appid=${API_KEY}`;
+    const forecastUrl = `/api/forecast?q=${encodeURIComponent(cityName)}`;
     const forecastRes = await fetch(forecastUrl);
     const forecastData = await processWeatherResponse(forecastRes, cityName);
     if (forecastData) renderForecast(forecastData);
@@ -109,7 +109,7 @@ async function fetchWeatherByCity(cityName) {
 }
 
 async function fetchWeatherByCoords(lat, lon) {
-  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+  const weatherUrl = `/api/weather?lat=${lat}&lon=${lon}`;
   const response = await fetch(weatherUrl);
   const data = await processWeatherResponse(response, "your location");
   if (!data) return;
@@ -119,7 +119,7 @@ async function fetchWeatherByCoords(lat, lon) {
   addRecentCity(data.name);
 
   try {
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+    const forecastUrl = `/api/forecast?lat=${lat}&lon=${lon}`;
     const forecastRes = await fetch(forecastUrl);
     const forecastData = await processWeatherResponse(forecastRes, "your location");
     if (forecastData) renderForecast(forecastData);

@@ -6,17 +6,41 @@ A weather lookup app built on Bootstrap 5, using the [OpenWeatherMap](https://op
 
 ```
 weather-app/
-├── index.html   → page structure/markup
-├── style.css    → all custom styling (Bootstrap is loaded from CDN, this file overrides/extends it)
-├── app.js       → all app logic: fetching weather, rendering results, geolocation, recent searches
-└── pic/         → background photo(s) — add your own image(s) here, see "Background image" below
+├── index.html        → page structure/markup
+├── style.css         → all custom styling (Bootstrap is loaded from CDN, this file overrides/extends it)
+├── app.js            → all app logic: fetching weather, rendering results, geolocation, recent searches
+├── api/
+│   ├── weather.js    → Vercel serverless function, proxies current-weather requests
+│   └── forecast.js   → Vercel serverless function, proxies 5-day-forecast requests
+└── pic/               → background photo(s) — add your own image(s) here, see "Background image" below
 ```
 
-## Setup
+The browser never holds an API key. `app.js` calls your own `/api/weather` and `/api/forecast` endpoints; those serverless functions attach the real OpenWeatherMap key (read from an environment variable) and forward the request. Anyone viewing your page's source only sees calls to your own domain, never the key.
 
-1. Keep all four files (`index.html`, `style.css`, `app.js`, and the `pic/` folder) in the same directory — `index.html` links to the other two by relative path (`style.css`, `app.js`), so don't rename or move them without updating those links.
-2. Add a `pic/` folder next to `index.html` containing an image named `wolfgang-hasselmann-bR_-gllg7Bs-unsplash.jpg` (or update the path in `style.css` under `.bg-photo` to match whatever image you use).
-3. Open `index.html` directly in a browser, or serve it locally (e.g. VS Code's "Live Server" extension) for the most reliable experience — see the Geolocation note below.
+## Local setup (no deployment yet)
+
+Because `/api` routes are serverless functions, plain "open `index.html` in a browser" or a static file server (e.g. Live Server) **won't** run them — you'll get 404s on `/api/weather`. To test locally with the API routes working:
+
+1. Install the Vercel CLI: `npm install -g vercel`
+2. In the project folder, run `vercel dev`
+3. It'll ask you to link/create a Vercel project the first time, then serve the site (including `/api`) at a local URL like `http://localhost:3000`.
+4. Set your API key locally by creating a `.env` file (see below) — `vercel dev` reads it automatically.
+
+**`.env`** (create this file, keep it out of git — add `.env` to `.gitignore`):
+```
+OPENWEATHER_API_KEY=your-real-key-here
+```
+
+## Deploying to Vercel (production)
+
+1. Push this project to GitHub (see your earlier commit/push steps).
+2. Go to [vercel.com](https://vercel.com), "Add New Project", and import the GitHub repo.
+3. Before or after the first deploy, go to **Project Settings → Environment Variables** and add:
+   - Key: `OPENWEATHER_API_KEY`
+   - Value: your real OpenWeatherMap key
+   - Environment: Production (and Preview/Development if you want those to work too)
+4. Redeploy if you added the variable after the first deploy (Vercel needs a fresh build to pick it up).
+5. Your live site will call `/api/weather` and `/api/forecast` on its own domain — the key stays server-side.
 
 ## Features
 
@@ -30,10 +54,11 @@ weather-app/
 
 ## Known limitations / things to know
 
-- **API key is visible in `app.js`.** This is fine for local/personal use, but if you ever deploy this publicly with real traffic, anyone can view your page's JS source and see the key. To fix that properly, you'd route the fetch calls through a small backend or serverless function that holds the key server-side instead.
-- **OpenWeatherMap free tier** allows 60 calls/minute. Each search now fires 2 requests (current weather + forecast), so heavy testing will hit that limit roughly twice as fast as before.
-- **Geolocation requires HTTPS or `localhost`.** Opening the file directly (`file://`) may still prompt for permission in some browsers, but for reliable behavior, especially once you're ready to put this somewhere real, serve it over `https://`.
+- **`/api` routes only work under Vercel (or `vercel dev` locally).** Opening `index.html` directly, or serving it with a plain static server, will 404 on weather/forecast requests. See "Local setup" above.
+- **OpenWeatherMap free tier** allows 60 calls/minute. Each search fires 2 requests (current weather + forecast) to your own `/api` routes, which each make 1 call to OpenWeatherMap — so 2 OpenWeatherMap calls per search.
+- **Geolocation requires HTTPS or `localhost`.** Vercel serves everything over HTTPS by default, so this works out of the box once deployed; for local testing, `vercel dev`'s `localhost` also satisfies this.
 - The background photo path in `style.css` is a relative link (`pic/...`) — it will show as a broken image until you add a matching file to the `pic/` folder.
+- Never commit a real API key anywhere in this repo (including a `.env` file) — set it only in Vercel's Environment Variables dashboard and, for local dev, in a gitignored `.env` file.
 
 ## Customizing
 
