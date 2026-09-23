@@ -1,0 +1,268 @@
+:root {
+  --navy: #12162b;
+  --panel: #1b2140;
+  --amber: #e8a33d;
+  --paper: #f3efe4;
+  --slate: #8890b3;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  color: var(--paper);
+  font-family: "IBM Plex Mono", monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.bg-photo {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("pic/wolfgang-hasselmann-bR_-gllg7Bs-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: kenburns 30s ease-in-out infinite alternate;
+}
+
+.bg-tint {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 22, 43, 0.82),
+    rgba(18, 22, 43, 0.9)
+  );
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-photo {
+    animation: none;
+  }
+}
+
+.brand {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  letter-spacing: 0.01em;
+  color: var(--paper);
+  border-bottom: 1px solid rgba(243, 239, 228, 0.15);
+  padding-bottom: 0.75rem;
+}
+
+.brand span {
+  color: var(--amber);
+  font-style: italic;
+  font-weight: 500;
+}
+
+#city {
+  background: rgba(18, 22, 43, 0.4);
+  border: 1px solid rgba(243, 239, 228, 0.2);
+  border-radius: 2px;
+  color: var(--paper);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+#city::placeholder {
+  color: var(--slate);
+}
+
+#city:focus {
+  background: rgba(18, 22, 43, 0.4);
+  color: var(--paper);
+  border-color: var(--amber);
+  box-shadow: 0 0 0 1px var(--amber);
+}
+
+.btn-check-weather {
+  background: var(--amber);
+  border: none;
+  color: var(--navy);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 2px;
+}
+
+.btn-check-weather:hover {
+  background: #f0b25c;
+  color: var(--navy);
+}
+
+.btn-check-weather:disabled {
+  background: var(--slate);
+  color: var(--navy);
+  opacity: 0.7;
+}
+
+.spinner {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(18, 22, 43, 0.35);
+  border-top-color: var(--navy);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.recent-wrap {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0 0 1.5rem;
+}
+
+.recent-label {
+  font-size: 0.75rem;
+  color: var(--slate);
+  margin-right: 0.25rem;
+}
+
+.recent-chip {
+  background: rgba(18, 22, 43, 0.4);
+  border: 1px solid rgba(243, 239, 228, 0.2);
+  color: var(--paper);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.recent-chip:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.status-line {
+  font-size: 0.85rem;
+  color: var(--slate);
+  margin: 0.75rem 0 1.75rem;
+  min-height: 1.2em;
+}
+
+.status-line.is-error {
+  color: #e8845a;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--slate);
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.stat-value {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--paper);
+}
+
+.temp-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.weather-icon {
+  width: 34px;
+  height: 34px;
+  display: none;
+}
+
+.stats-row {
+  border-top: 1px solid rgba(243, 239, 228, 0.15);
+  padding-top: 1.75rem;
+  transition: opacity 0.2s ease;
+}
+
+.stats-row.is-loading {
+  opacity: 0.35;
+}
+
+.stats-row > div {
+  border-right: 1px solid rgba(243, 239, 228, 0.15);
+}
+
+.stats-row > div:last-child {
+  border-right: none;
+}
+
+.forecast-section {
+  margin-top: 2rem;
+}
+
+.forecast-strip {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.forecast-card {
+  flex: 0 0 auto;
+  min-width: 88px;
+  text-align: center;
+  padding: 0 1rem;
+  border-right: 1px solid rgba(243, 239, 228, 0.15);
+}
+
+.forecast-card:first-child {
+  padding-left: 0;
+}
+
+.forecast-card:last-child {
+  border-right: none;
+}
+
+.forecast-day {
+  font-size: 0.75rem;
+  color: var(--slate);
+  margin-bottom: 0.5rem;
+}
+
+.forecast-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.forecast-temp {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 767px) {
+  .stats-row > div {
+    border-right: none;
+    border-bottom: 1px solid rgba(243, 239, 228, 0.15);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+}
